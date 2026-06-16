@@ -1,23 +1,22 @@
 #!/bin/sh
-# External Ammyy Installer for Alpine Linux
+# Remote GitHub Ammyy Installer for Alpine Linux
 
-# Determine the directory where this script is located
-SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
-ARCHIVE_NAME="ammyy_bundle.tar.gz"
-ARCHIVE_PATH="${SCRIPT_DIR}/${ARCHIVE_NAME}"
+# CONFIGURATION: Synced with your official GitHub repository
+GH_USER="dioxine"
+GH_REPO="ammyy-alpine"
+GH_BRANCH="main"
+
+# Direct URL to your release archive on GitHub
+ARCHIVE_URL="https://githubusercontent.com{GH_USER}/${GH_REPO}/${GH_BRANCH}/ammyy_bundle.tar.gz"
 
 echo "[+] Installing system dependencies..."
-apk add --no-cache psmisc sed gawk
+apk add --no-cache psmisc sed gawk curl
 
-echo "[+] Checking for archive file..."
-if [ ! -f "$ARCHIVE_PATH" ]; then
-    eerror "Required archive not found: ${ARCHIVE_PATH}"
-    exit 1
-fi
-
-echo "[+] Extracting application files to /opt..."
+echo "[+] Downloading and extracting application files to /opt..."
 mkdir -p /opt
-tar -xzf "$ARCHIVE_PATH" -C /opt
+
+# Download and pipe directly to tar without creating temporary files on disk
+curl -fsSL "$ARCHIVE_URL" | tar -xzC /opt
 
 echo "[+] Deploying OpenRC services from archive..."
 cp /opt/ammyy/init/ammyy-relay /etc/init.d/
@@ -35,4 +34,3 @@ rc-service ammyy-relay restart
 
 echo "[!] Installation completed successfully!"
 exit 0
-
