@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  ammyy-app:
+    image: gdioxine/ammyy-stack:latest
+    container_name: ammyy-app
+    restart: unless-stopped
+    cap_add:
+      - SYS_RESOURCE
+    ports:
+      - "85:85"
+      - "3080:3080"
+      - "8080:8080"
+      - "8443:8443"
+    volumes:
+      - /opt/ammyy/config:/opt/ammyy/config
+      - /opt/ammyy/logs:/opt/ammyy/logs
+
