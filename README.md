@@ -11,7 +11,7 @@ Lightweight, standalone glibc compatibility layer for running Ammyy binaries dir
 You can install the entire application bundle, dependencies, and OpenRC system services automatically using the following command:
 
 ```bash
-curl -fsSL https://githubusercontent.com | sh
+curl -fsSL https://raw.githubusercontent.com/dioxine/ammyy-alpine/main/install.sh | sh
 ```
 
 The installer will automatically fetch all binaries, config files, library layers, and register the components as system daemons.
