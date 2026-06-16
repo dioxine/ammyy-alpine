@@ -22,6 +22,9 @@ The binaries bind directly to your host machine's interfaces using the following
 | **85**   | TCP      | `ammyy_router` | Router built-in web management console                     |
 | **3080** | TCP      | `ammyy_relay`  | Active relay listening port (instead of standard `80`)     |
 
+> [!IMPORTANT]
+> **Relay Local IP Configuration:** If you are running multiple virtual network layers or custom VPN tunnels (like WireGuard/Amnezia), the `0.0.0.0` address might fail to bind properly inside Host Mode. Open your `config/relay.cfg` and explicitly replace `0.0.0.0` with your host's actual physical LAN IP address (e.g., `192.168.1.100`).
+
 ---
 
 ## Docker Compose Quick Deployment
