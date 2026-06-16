@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   ammyy-app:
     image: gdioxine/ammyy-stack:latest
