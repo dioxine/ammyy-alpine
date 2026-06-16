@@ -31,7 +31,7 @@ By default, the stack uses the following non-standard ports to prevent any confl
 Clone the repository directly into the `/opt` directory to establish the complete pre-configured structure:
 
 ```bash
-git clone -b docker https://github.com/dioxine/ammyy-alpine.git
+git clone -b docker https://github.com/dioxine/ammyy-alpine.git ammyy
 ```
 
 ### 2. Start the Stack
