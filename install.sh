@@ -6,6 +6,13 @@ GH_USER="dioxine"
 GH_REPO="ammyy-alpine"
 GH_BRANCH="main"
 
+# ROOT PRIVILEGES CHECK
+if [ "$(id -u)" -ne 0 ]; then
+    echo "[-] Error: This script must be run as root!"
+    echo "    Please run it using 'sudo sh' or switch to root user."
+    exit 1
+fi
+
 # Direct URL to your release archive on GitHub
 ARCHIVE_URL="https://raw.githubusercontent.com/${GH_USER}/${GH_REPO}/${GH_BRANCH}/ammyy_bundle.tar.gz"
 
