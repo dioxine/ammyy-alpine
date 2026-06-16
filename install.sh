@@ -7,7 +7,7 @@ GH_REPO="ammyy-alpine"
 GH_BRANCH="main"
 
 # Direct URL to your release archive on GitHub
-ARCHIVE_URL="https://githubusercontent.com{GH_USER}/${GH_REPO}/${GH_BRANCH}/ammyy_bundle.tar.gz"
+ARCHIVE_URL="https://raw.githubusercontent.com/${GH_USER}/${GH_REPO}/${GH_BRANCH}/ammyy_bundle.tar.gz"
 
 echo "[+] Installing system dependencies..."
 apk add --no-cache psmisc sed gawk curl
