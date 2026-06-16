@@ -33,7 +33,7 @@
 Склонируйте репозиторий напрямую в каталог `/opt`, чтобы сразу развернуть всю готовую структуру файлов:
 
 ```bash
-git clone -b docker https://github.com /opt/ammyy
+git clone -b docker https://github.com/dioxine/ammyy-alpine.git /opt/ammyy
 ```
 
 ### 2. Запуск стека служб

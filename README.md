@@ -33,7 +33,7 @@ The binaries bind directly to your host machine's interfaces using the following
 Clone the repository directly into the `/opt` directory to establish the complete pre-configured structure:
 
 ```bash
-git clone -b docker https://github.com /opt/ammyy
+git clone -b docker https://github.com/dioxine/ammyy-alpine.git /opt/ammyy
 ```
 
 ### 2. Start the Stack
