@@ -9,39 +9,44 @@ Lightweight glibc compatibility layer for running Ammyy binaries directly in Alp
 > [!NOTE]
 > Container Total Content Size: **8.86 MB** | Disk Usage: **29.9 MB**
 
-## Default Network Ports Mapping
+## Network Architecture & Ports Mapping
 
-By default, the stack uses the following non-standard ports to prevent any conflicts with existing web servers like Apache or Nginx:
+The stack operates in **Host Network Mode (`network_mode: host`)**. This completely eliminates Docker's virtual NAT translation layer, prevents routing overhead, and resolves anti-spoofing firewall drop bugs unique to Alpine Linux.
 
-| Host Port | Protocol | Component      | Description                                                |
-|:----------|:---------|:---------------|:-----------------------------------------------------------|
-| **8080**  | TCP      | `ammyy_router` | Main router port for incoming client connections           |
-| **8443**  | TCP      | `ammyy_router` | Alternative secure router port (instead of standard `443`) |
-| **85**    | TCP      | `ammyy_router` | Router built-in web management console                     |
-| **3080**  | TCP      | `ammyy_relay`  | Active relay listening port (instead of standard `80`)     |
+The binaries bind directly to your host machine's interfaces using the following non-standard destination ports to prevent any conflicts with pre-existing web servers (like Apache or Nginx):
+
+| Port     | Protocol | Component      | Description                                                |
+|:---------|:-------- |:---------------|:-----------------------------------------------------------|
+| **8080** | TCP      | `ammyy_router` | Main router port for incoming client connections           |
+| **8443** | TCP      | `ammyy_router` | Alternative secure router port (instead of standard `443`) |
+| **85**   | TCP      | `ammyy_router` | Router built-in web management console                     |
+| **3080** | TCP      | `ammyy_relay`  | Active relay listening port (instead of standard `80`)     |
 
 ---
 
 ## Docker Compose Quick Deployment
 
 > [!IMPORTANT]
-> Administrative privileges are required to manage Docker daemons. Please ensure you are running as `root` or using `sudo`.
+> Administrative privileges are required to manage Docker daemons and workspace paths. Please ensure you are running as `root` or using `sudo`.
 
 ### 1. Clone the Repository
 Clone the repository directly into the `/opt` directory to establish the complete pre-configured structure:
 
 ```bash
-git clone -b docker https://github.com/dioxine/ammyy-alpine.git ammyy
+git clone -b docker https://github.com /opt/ammyy
 ```
 
 ### 2. Start the Stack
-Navigate to the workspace directory and spin up the micro-container in detached mode:
+Navigate to the newly created workspace directory and spin up the micro-container in detached mode:
 
 ```bash
 cd /opt/ammyy
 docker compose up -d
 ```
-*Docker will automatically pull the optimized image `gdioxine/ammyy-stack:latest` from Docker Hub, configure isolated network links, and map your host directories.*
+*Docker will deploy the optimized image `gdioxine/ammyy-stack:latest` from Docker Hub. The container attaches natively to the host interface without modifying host firewall structures.*
+
+> [!NOTE]
+> **Alpine Linux Networking Note:** If you encounter packet-drop connection timeouts on older setups upon first launch, ensure your system rules are normalized by flushing conflicting tables using `nft flush ruleset` or `iptables -F FORWARD`.
 
 ---
 
