@@ -27,14 +27,11 @@ By default, the stack uses the following non-standard ports to prevent any confl
 > [!IMPORTANT]
 > Administrative privileges are required to manage Docker daemons. Please ensure you are running as `root` or using `sudo`.
 
-### 1. Download Configuration Bundle
-Create the host application directory and download the structured configuration files directly to your server:
+### 1. Clone the Repository
+Clone the repository directly into the `/opt` directory to establish the complete pre-configured structure:
 
 ```bash
-mkdir -p /opt/ammyy/config /opt/ammyy/logs
-curl -fsSL https://githubusercontent.com -o /opt/ammyy/config/router.cfg
-curl -fsSL https://githubusercontent.com -o /opt/ammyy/config/relay.cfg
-curl -fsSL https://githubusercontent.com -o /opt/ammyy/docker-compose.yml
+git clone -b docker git@github.com:dioxine/ammyy-alpine.git
 ```
 
 ### 2. Start the Stack

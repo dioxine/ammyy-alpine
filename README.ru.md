@@ -27,14 +27,11 @@
 > [!IMPORTANT]
 > Для управления демонами Docker требуются права суперпользователя. Убедитесь, что вы запущены под учетной записью `root` или используете `sudo`.
 
-### 1. Скачивание файлов конфигурации
-Создайте рабочую директорию на хосте и загрузите структурированные файлы настроек напрямую на ваш сервер:
+### 1. Клонирование репозитория
+Склонируйте репозиторий напрямую в каталог `/opt`, чтобы сразу развернуть всю готовую структуру файлов:
 
 ```bash
-mkdir -p /opt/ammyy/config /opt/ammyy/logs
-curl -fsSL https://githubusercontent.com -o /opt/ammyy/config/router.cfg
-curl -fsSL https://githubusercontent.com -o /opt/ammyy/config/relay.cfg
-curl -fsSL https://githubusercontent.com -o /opt/ammyy/docker-compose.yml
+git clone -b docker git@github.com:dioxine/ammyy-alpine.git
 ```
 
 ### 2. Запуск стека служб
