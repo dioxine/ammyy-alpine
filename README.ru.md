@@ -11,7 +11,7 @@
 Вы можете автоматически установить весь пакет приложения, системные зависимости и службы автозапуска OpenRC с помощью следующей команды:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/dioxine/ammyy-alpine/main/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/dioxine/ammyy-alpine/main/install.sh | sudo sh
 ```
 
 Инсталлятор самостоятельно загрузит бинарники, файлы конфигурации, необходимые библиотеки совместимости glibc и зарегистрирует компоненты как системные демоны.
